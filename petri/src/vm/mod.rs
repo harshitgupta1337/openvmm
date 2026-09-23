@@ -1323,6 +1323,16 @@ impl<T: PetriVmmBackend> PetriVmBuilder<T> {
         self
     }
 
+    /// Inject the composite Windows and UEFI CA secure boot template into the VM's UEFI.
+    pub fn with_composite_secure_boot_template(mut self) -> Self {
+        self.config
+            .firmware
+            .uefi_config_mut()
+            .expect("Secure boot is only supported for UEFI firmware.")
+            .secure_boot_template = Some(SecureBootTemplate::Composite);
+        self
+    }
+
     /// Set the VM to use the specified processor topology.
     pub fn with_processor_topology(mut self, topology: ProcessorTopology) -> Self {
         self.config.proc_topology = topology;
@@ -3352,6 +3362,8 @@ pub enum SecureBootTemplate {
     MicrosoftWindows,
     /// The Microsoft UEFI certificate authority template.
     MicrosoftUefiCertificateAuthority,
+    /// A composite of the Microsoft Windows and UEFI CA templates.
+    Composite,
 }
 
 /// Quirks to workaround certain bugs that only manifest when using a

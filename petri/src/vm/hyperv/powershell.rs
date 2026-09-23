@@ -539,6 +539,7 @@ impl HyperVNewCustomVMArgs {
                     SecureBootTemplate::MicrosoftUefiCertificateAuthority => {
                         HyperVSecureBootTemplate::MicrosoftUEFICertificateAuthority
                     }
+                    SecureBootTemplate::Composite => HyperVSecureBootTemplate::OpenSourceShieldedVM,
                 }),
             management_vtl_feature_flags: properties.is_openhcl.then(|| {
                 HyperVManagementVtlFeatureFlags::new().with_strict_encryption_policy(

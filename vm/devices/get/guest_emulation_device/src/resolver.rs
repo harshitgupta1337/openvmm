@@ -190,6 +190,9 @@ impl AsyncResolveResource<VmbusDeviceHandleKind, GuestEmulationDeviceHandle>
                     GuestSecureBootTemplateType::MicrosoftUefiCertificateAuthority => {
                         SecureBootTemplateType::MICROSOFT_UEFI_CERTIFICATE_AUTHORITY
                     }
+                    GuestSecureBootTemplateType::Composite => {
+                        SecureBootTemplateType::OPEN_SOURCE_SHIELDED_VM
+                    }
                 },
                 enable_battery: resource.enable_battery,
                 no_persistent_secrets: resource.no_persistent_secrets,

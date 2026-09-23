@@ -257,6 +257,9 @@ impl GuestEmulationTransportClient {
                         HclSecureBootTemplateId::MicrosoftUEFICertificateAuthority => {
                             SecureBootTemplateType::MicrosoftUefiCertificateAuthority
                         }
+                        HclSecureBootTemplateId::OpenSourceShieldedVM => {
+                            SecureBootTemplateType::Composite
+                        }
                     }
                 },
                 bios_guid: json.v1.bios_guid,

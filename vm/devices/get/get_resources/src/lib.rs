@@ -144,6 +144,8 @@ pub mod ged {
         MicrosoftWindows,
         /// The Microsoft UEFI certificate authority template.
         MicrosoftUefiCertificateAuthority,
+        /// A composite of the Microsoft Windows and UEFI CA templates.
+        Composite,
     }
 
     /// The guest's EFI diagnostics log level type to use.

@@ -409,6 +409,9 @@ impl PetriVmConfigOpenVmm {
                         MachineArch::X86_64,
                         Some(SecureBootTemplate::MicrosoftUefiCertificateAuthority),
                     ) => hyperv_secure_boot_templates::x64::microsoft_uefi_ca(),
+                    (MachineArch::X86_64, Some(SecureBootTemplate::Composite)) => {
+                        hyperv_secure_boot_templates::x64::microsoft_composite()
+                    }
                     (MachineArch::Aarch64, Some(SecureBootTemplate::MicrosoftWindows)) => {
                         hyperv_secure_boot_templates::aarch64::microsoft_windows()
                     }
@@ -416,6 +419,9 @@ impl PetriVmConfigOpenVmm {
                         MachineArch::Aarch64,
                         Some(SecureBootTemplate::MicrosoftUefiCertificateAuthority),
                     ) => hyperv_secure_boot_templates::aarch64::microsoft_uefi_ca(),
+                    (MachineArch::Aarch64, Some(SecureBootTemplate::Composite)) => {
+                        hyperv_secure_boot_templates::aarch64::microsoft_composite()
+                    }
                     (_, None) => Default::default(),
                 });
             let secure_boot = uefi_cfg.is_some_and(|c| c.secure_boot_enabled);
@@ -1163,6 +1169,9 @@ impl PetriVmConfigSetupCore<'_> {
                 }
                 Some(SecureBootTemplate::MicrosoftUefiCertificateAuthority) => {
                     get_resources::ged::GuestSecureBootTemplateType::MicrosoftUefiCertificateAuthority
+                }
+                Some(SecureBootTemplate::Composite) => {
+                    get_resources::ged::GuestSecureBootTemplateType::Composite
                 }
                 None => get_resources::ged::GuestSecureBootTemplateType::None,
             },

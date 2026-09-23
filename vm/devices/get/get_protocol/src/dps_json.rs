@@ -65,6 +65,8 @@ pub enum HclSecureBootTemplateId {
     MicrosoftWindows,
     #[serde(rename = "MicrosoftUEFICertificateAuthority")]
     MicrosoftUEFICertificateAuthority,
+    #[serde(rename = "OpenSourceShieldedVM")]
+    OpenSourceShieldedVM,
 }
 
 // requires a `Default` derive, due to [OmitEmpty] used in parent struct

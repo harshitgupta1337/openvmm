@@ -169,6 +169,8 @@ pub mod platform_settings {
         MicrosoftWindows,
         /// Apply the Microsoft UEFI CA.
         MicrosoftUefiCertificateAuthority,
+        /// Apply a composite of the Microsoft Windows and UEFI CA templates.
+        Composite,
     }
 }
 

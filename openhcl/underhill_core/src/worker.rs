@@ -2561,6 +2561,19 @@ async fn new_underhill_vm(
                     anyhow::bail!("no secure boot template for current guest_arch")
                 }
             }
+            SecureBootTemplateType::Composite => {
+                if cfg!(guest_arch = "x86_64") {
+                    if isolation.is_isolated() {
+                        hyperv_secure_boot_templates::x64::microsoft_composite_confidential()
+                    } else {
+                        hyperv_secure_boot_templates::x64::microsoft_composite()
+                    }
+                } else if cfg!(guest_arch = "aarch64") {
+                    hyperv_secure_boot_templates::aarch64::microsoft_composite()
+                } else {
+                    anyhow::bail!("no secure boot template for current guest_arch")
+                }
+            }
         };
 
         // check if vmgs includes custom UEFI JSON

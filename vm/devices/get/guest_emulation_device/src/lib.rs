@@ -1320,6 +1320,9 @@ impl<T: RingMem + Unpin> GedChannel<T> {
                     SecureBootTemplateType::MICROSOFT_UEFI_CERTIFICATE_AUTHORITY => {
                         HclSecureBootTemplateId::MicrosoftUEFICertificateAuthority
                     }
+                    SecureBootTemplateType::OPEN_SOURCE_SHIELDED_VM => {
+                        HclSecureBootTemplateId::OpenSourceShieldedVM
+                    }
                     _ => panic!("Invalid secure boot template"),
                 },
                 enable_battery: state.config.enable_battery,

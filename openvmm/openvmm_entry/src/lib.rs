@@ -1193,11 +1193,17 @@ async fn vm_config_from_command_line(
                 (MachineArch::X86_64, SecureBootTemplateCli::UefiCa) => {
                     hyperv_secure_boot_templates::x64::microsoft_uefi_ca()
                 }
+                (MachineArch::X86_64, SecureBootTemplateCli::Composite) => {
+                    hyperv_secure_boot_templates::x64::microsoft_composite()
+                }
                 (MachineArch::Aarch64, SecureBootTemplateCli::Windows) => {
                     hyperv_secure_boot_templates::aarch64::microsoft_windows()
                 }
                 (MachineArch::Aarch64, SecureBootTemplateCli::UefiCa) => {
                     hyperv_secure_boot_templates::aarch64::microsoft_uefi_ca()
+                }
+                (MachineArch::Aarch64, SecureBootTemplateCli::Composite) => {
+                    hyperv_secure_boot_templates::aarch64::microsoft_composite()
                 }
             },
             None => CustomVars::default(),
@@ -1474,6 +1480,9 @@ async fn vm_config_from_command_line(
                         },
                         Some(SecureBootTemplateCli::UefiCa) => {
                             get_resources::ged::GuestSecureBootTemplateType::MicrosoftUefiCertificateAuthority
+                        }
+                        Some(SecureBootTemplateCli::Composite) => {
+                            get_resources::ged::GuestSecureBootTemplateType::Composite
                         }
                         None => {
                             get_resources::ged::GuestSecureBootTemplateType::None

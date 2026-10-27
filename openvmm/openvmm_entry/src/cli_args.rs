@@ -3131,10 +3131,7 @@ impl FromStr for NicConfigCli {
                         max_queues = Some(val.parse().map_err(|_| "failed to parse queue count")?);
                     }
                     "mac" => {
-                        mac_address = Some(
-                            val.parse()
-                                .map_err(|_| "failed to parse MAC address")?,
-                        );
+                        mac_address = Some(val.parse().map_err(|_| "failed to parse MAC address")?);
                     }
                     "pcie_port" => {
                         if val.is_empty() {
